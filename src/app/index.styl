@@ -1,0 +1,108 @@
+// varriables
+bordercolor = #E8E8E8
+backgroundnavbar = #373D49
+textnavbar = #FFFFFF
+textnavbarhover = #35D7BB
+inputcolor = #373D49
+titlecolor = #A0AABF
+heighteditor = calc(100vh - 161px)
+
+.browsehappy
+  margin 50px 0
+  background #ccc
+  color #000
+  padding 50px 0
+
+*, *:before, *:after
+  box-sizing border-box
+
+.clearfix
+  &:before,
+  &:after
+    content " "
+    display table
+  &:after
+    clear both
+
+.navigation
+  background-color backgroundnavbar
+  ul
+    margin 0
+    padding 0
+    li
+      display block
+      float left
+      &:last-child
+        border-right-width 0
+  a
+    text-transform uppercase
+    text-decoration none
+    letter-spacing 2px
+    font-size 12px
+    display block
+    padding 15px
+    color textnavbar
+    &.brand
+      font-weight bold
+      letter-spacing 5px
+    &:hover
+      color: textnavbarhover
+
+.header
+  .title-document
+    min-width 300px
+    padding 0 10px
+    color inputcolor
+    height 30px
+    width 100%
+    border none
+
+.title
+  text-transform uppercase
+  display inline-block
+  padding 0 16px
+  font-size 10px
+  font-weight 500
+  color titlecolor
+
+.editor
+  .editor-header
+    border 1px solid bordercolor
+    position relative
+    float left
+    width 50%
+    height 43px
+    .text-right
+      margin-right 20px
+      float: right;
+      padding-top: 15px;
+  .split
+    overflow scroll
+    border 1px solid bordercolor
+    color inputcolor
+    &.split-editor
+      height heighteditor
+      padding 10px
+      float left
+      width 50%
+    &.split-preview
+      float right
+      height heighteditor
+      width 50%
+      padding 10px
+
+.mytooltip
+  display none
+  position absolute
+  background-color #222
+  padding 7px 10px
+  color #fff
+  &.tooltip-show
+    display block!important
+  .tooltip-arrow
+    position absolute
+
+/* Do not remove this comments bellow. It's the markers used by gulp-inject to inject
+   all your stylus files automatically */
+// injector
+// endinjector
