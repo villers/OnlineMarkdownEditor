@@ -4,92 +4,134 @@ backgroundnavbar = #373D49
 textnavbar = #FFFFFF
 textnavbarhover = #35D7BB
 inputcolor = #373D49
-titlecolor = #A0AABF
+titlecolor = #373D49
 heighteditor = calc(100vh - 161px)
+containercolor = white
+backgroundbody = whitesmoke
+
+body
+    background-color backgroundbody
+
+img
+    width 100px
+
+.input-field label
+    left 0
+    color #373D49
+    font-weight bold
 
 .browsehappy
-  margin 50px 0
-  background #ccc
-  color #000
-  padding 50px 0
+    margin 50px 0
+    background #ccc
+    color #000
+    padding 50px 0
 
 *, *:before, *:after
-  box-sizing border-box
+    box-sizing border-box
 
 .clearfix
-  &:before,
-  &:after
-    content " "
-    display table
-  &:after
-    clear both
+    &:before,
+    &:after
+        content " "
+        display table
+    &:after
+        clear both
 
 .navigation
-  background-color backgroundnavbar
-  ul
-    margin 0
-    padding 0
+    background-color backgroundnavbar
+    ul
+        margin 0
+        padding 0
     li
-      display block
-      float left
-      &:last-child
+        display block
+        float left
+    &:last-child
         border-right-width 0
-  a
-    text-transform uppercase
-    text-decoration none
-    letter-spacing 2px
-    font-size 12px
-    display block
-    padding 15px
-    color textnavbar
+    a
+        text-transform uppercase
+        text-decoration none
+        letter-spacing 2px
+        font-size 12px
+        color textnavbar
     &.brand
-      font-weight bold
-      letter-spacing 5px
+        font-weight bold
+        letter-spacing 5px
     &:hover
-      color: textnavbarhover
+        color: textnavbarhover
+
+.container-box
+    background-color containercolor
+    border-radius 6px
+    padding 20px !important
+    margin-top 25px
+    margin-bottom 15px
+
+.shadow
+    box-shadow 0 8px 17px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19)
+
+textarea
+    height heighteditor
+    max-width 600px
+    word-wrap break-word
+    width 100%
+    background #fff
+    border-radius 3px
+    border none !important
+    padding 20px
+    box-shadow 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12)
+    -webkit-transition height 0.5s ease
+    -moz-transition height 0.5s ease
+    -ms-transition height 0.5s ease
+    -o-transition height 0.5s ease
+    transition height 0.5s ease
 
 .header
   .title-document
-    min-width 300px
-    padding 0 10px
     color inputcolor
-    height 30px
     width 100%
-    border none
+
+.page-header
+    margin-top 20px
+    margin-bottom 30px
+    border-bottom: 2px solid backgroundnavbar
+
+.material-icons
+    line-height 0.7
 
 .title
   text-transform uppercase
   display inline-block
-  padding 0 16px
-  font-size 10px
+  font-size 16px
   font-weight 500
   color titlecolor
 
-.editor
-  .editor-header
-    border 1px solid bordercolor
-    position relative
-    float left
-    width 50%
-    height 43px
-    .text-right
-      margin-right 20px
-      float: right;
-      padding-top: 15px;
-  .split
-    overflow scroll
-    border 1px solid bordercolor
-    color inputcolor
-    &.split-editor
-      height heighteditor
-      padding 10px
-      float left
-      width 50%
+ .editor
+ padding 20px
+    .split-editor
+       height heighteditor
     &.split-preview
-      float right
-      height heighteditor
-      width 50%
-      padding 10px
+       float right
+       height heighteditor
+       width 50%
+       padding 10px
+
+.split.split-preview.ng-isolate-scope
+    p, h1, h2, h3, h4, h5, h6
+        word-wrap break-word
+        padding 20px
+
+.container-preview
+    max-width 600px
+    word-wrap break-word
+    width 100%
+    background #fff
+    border-radius 3px
+    box-shadow 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12)
+    -webkit-transition height 0.5s ease
+    -moz-transition height 0.5s ease
+    -ms-transition height 0.5s ease
+    -o-transition height 0.5s ease
+    transition height 0.5s ease
 
 .mytooltip
   display none
@@ -101,6 +143,14 @@ heighteditor = calc(100vh - 161px)
     display block!important
   .tooltip-arrow
     position absolute
+
+@media only screen and (min-width: 993px)
+    .container
+        width 85%
+
+@media only screen and (max-width: 574px)
+    nav > ul > li:nth-child(2)
+        display none
 
 /* Do not remove this comments bellow. It's the markers used by gulp-inject to inject
    all your stylus files automatically */

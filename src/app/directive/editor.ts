@@ -35,7 +35,7 @@ module artifact {
 
 
     /** @ngInject */
-    constructor (private $localStorage: any, private $window: IWindowService) {
+    constructor(private $localStorage: any, private $window: IWindowService) {
       this.document = this.$localStorage.document;
       this.download();
     }
@@ -56,35 +56,63 @@ module artifact {
     static Factory(): IDirective {
       return {
         template: `
-          <div>
-            <div class="header">
-              <h2 class="title">Document Name</h2>
-              <input class="title-document" type="text" ng-model="vm.document.name">
+          <div class="container">
+              <div class="container-box shadow">
+                    <div class="header">
+                        <div class="input-field">
+                          <label id="doc_name">Document Name</label>
+                          <input class="title-document" for="doc_name" placeholder="yourdocumentname.md" type="text" ng-model="vm.document.name" class="validate">
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="editor col s12">
+
+                        <div class="col s6">
+                          <div class="editor-header">
+                            <div class="page-header">
+                                <h3 class="title"><i class="material-icons left">create</i>Markdown</h3>
+                            </div>
+                            <!--
+                            <span class="text-right">
+                              <a href="#" tooltip="{{vm.tooltiptext.Title}}">Title</a>
+                              <a href="#" tooltip="{{vm.tooltiptext.List}}">List</a>
+                              <a href="#" tooltip="{{vm.tooltiptext.Link}}">Link</a>
+                            </span>
+                            -->
+
+                            <textarea class="split split-editor" wrap="off" autocapitalize="off" spellcheck="false" ng-model="vm.document.text" ng-change="vm.download()"></textarea>
+
+                          </div>
+                         </div>
+
+                         <div class="col s6">
+                              <div class="editor-header">
+                                <div class="page-header">
+                                    <h3 class="title"><i class="material-icons left">remove_red_eye</i>Preview</h3>
+                                </div>
+                              </div>
+
+                              <div class="container-preview">
+                                <div class="split split-preview" markdown="vm.document.text"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-
-            <div class="editor">
-
-              <div class="editor-header">
-                <h3 class="title">Markdown</h3>
-                <a ng-href="{{vm.document.url}}" download="{{vm.document.name}}" tooltip="{{vm.tooltiptext.Download}}"><i class="glyphicon glyphicon-download-alt"></i></a>
-
-                <span class="text-right">
-                  <a href="#" tooltip="{{vm.tooltiptext.Title}}">Title</a>
-                  <a href="#" tooltip="{{vm.tooltiptext.List}}">List</a>
-                  <a href="#" tooltip="{{vm.tooltiptext.Link}}">Link</a>
-                </span>
-
-              </div>
-
-              <div class="editor-header">
-                <h3 class="title">Preview</h3>
-              </div>
-
-              <textarea class="split split-editor" wrap="off" autocapitalize="off" spellcheck="false" ng-model="vm.document.text" ng-change="vm.download()"></textarea>
-
-              <div class="split split-preview" markdown="vm.document.text"></div>
-
-            </div>
+            <div class="fixed-action-btn" style="bottom: 45px; right: 24px;">
+            <a class="btn-floating btn-large">
+              <i class="material-icons">add</i>
+            </a>
+            <ul>
+              <li>
+                 <a class="btn-floating darken-1" style="transform: scaleY(0.4) scaleX(0.4) translateY(40px) translateX(0px); opacity: 0;"><i class="material-icons">help_outline</i></a>
+              </li>
+              <li>
+                <a class="btn-floating tooltipped" data-position="left" data-delay="20" data-tooltip="{{vm.tooltiptext.Download}}" ng-href="{{vm.document.url}}" download="{{vm.document.name}}"><i class="material-icons">file_download</i></a>
+              </li>
+            </ul>
+          </div>
           </div>
         `,
         replace: true,
