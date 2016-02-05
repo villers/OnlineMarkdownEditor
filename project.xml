@@ -11,6 +11,6 @@
 	</dependencies>
 	<tasks file="npm"/>
 	<deliverables>
-		<item path="dist"/>
+		<item path="build"/>
 	</deliverables>
 </project>

@@ -1,53 +1,83 @@
-module artifact {
-  'use strict';
+'use strict';
+'ngInject';
 
-  import IDirective = angular.IDirective;
+import IDocumentService = angular.IDocumentService;
+import IDirective = angular.IDirective;
+import ICompileService = angular.ICompileService;
+import IWindowService = angular.IWindowService;
+import IScope = angular.IScope;
+import IRootElementService = angular.IRootElementService;
+import IAttributes = angular.IAttributes;
+import IAugmentedJQuery = angular.IAugmentedJQuery;
 
-  /**
-   * show navbar
-   * <navbar></navbar>
-   */
-  export class ToolTipDirective {
-    /** @ngInject */
-    static Factory($document: angular.IDocumentService, $compile: angular.ICompileService): IDirective {
-      return {
-        restrict: 'A',
-        scope: true,
-        link: (scope: angular.IScope, element, attrs) => {
-          var tip = $compile('<div class="mytooltip tooltip-down" ng-bind-html="text"></div>')(scope);
-          var tipActiveClassName = 'tooltip-show';
-          scope['text'] = attrs['tooltip'];
+/**
+ * show navbar
+ * <navbar></navbar>
+ */
+export class ToolTipDirective {
+  static Factory($document: IDocumentService, $compile: ICompileService, $window: IWindowService): IDirective {
+    return {
+      restrict: 'A',
+      scope: true,
+      link: (scope: IScope, element: IRootElementService, attrs: IAttributes) => {
+        var tip: IAugmentedJQuery = $compile('<div class="mytooltip tooltip-down" ng-bind-html="text"></div>')(scope);
+        var tipActiveClassName = 'tooltip-show';
+        scope['text'] = attrs['tooltip'];
 
-          $document.find('body').append(tip);
+        $document.find('body').append(tip);
 
-          element.bind('mouseover', (e: any) => {
-            tip.addClass(tipActiveClassName);
+        element.bind('mouseover', (e: any) => {
+          tip.addClass(tipActiveClassName);
+          tip.css(ToolTipDirective.calculPosition(e, element, $window, tip, attrs));
+        });
 
-            var pos = e.target.getBoundingClientRect();
-            var offset = tip.offset();
-            var tipWidth = tip.outerWidth();
-            var elWidth = pos.width || pos.right - pos.left;
-            var elHeight = pos.height || pos.bottom - pos.top;
-            var tipOffset = 10;
+        element.bind('mouseout', () => {
+          tip.removeClass(tipActiveClassName);
+        });
 
-            offset.top = pos.top + elHeight + tipOffset;
-            offset.left = pos.left - (tipWidth / 2) + (elWidth / 2);
-            tip.offset(offset);
-          });
+        tip.bind('mouseover', () => {
+          tip.addClass(tipActiveClassName);
+        });
 
-          element.bind('mouseout', () => {
-            tip.removeClass(tipActiveClassName);
-          });
-
-          tip.bind('mouseover', () => {
-            tip.addClass(tipActiveClassName);
-          });
-
-          tip.bind('mouseout', () => {
-            tip.removeClass(tipActiveClassName);
-          });
-        }
-      };
-    }
+        tip.bind('mouseout', () => {
+          tip.removeClass(tipActiveClassName);
+        });
+      }
+    };
   }
+
+  private static calculPosition(e: any, element: IRootElementService, $window: IWindowService, tip: IAugmentedJQuery, attrs: IAttributes) {
+    var boundingClientRect = e.target.getBoundingClientRect();
+    var position: any = {
+      width: element.prop('offsetWidth'),
+      height: element.prop('offsetHeight'),
+      top: boundingClientRect.top + $window.pageYOffset,
+      left: boundingClientRect.left + $window.pageXOffset
+    };
+    var ttWidth: number = tip.prop( 'offsetWidth' );
+    var ttHeight: number = tip.prop( 'offsetHeight' );
+
+    switch (attrs['position']) {
+      case 'right':
+        return {
+          top: (position.top + position.height / 2 - ttHeight / 2) + 'px',
+          left: (position.left + position.width) + 'px'
+        };
+      case 'bottom':
+        return {
+          top: (position.top + position.height) + 'px',
+          left: (position.left + position.width / 2 - ttWidth / 2) + 'px'
+        };
+      case 'left':
+        return {
+          top: (position.top + position.height / 2 - ttHeight / 2) + 'px',
+          left: (position.left - ttWidth) + 'px'
+        };
+      default:
+        return {
+          top: (position.top - ttHeight) + 'px',
+          left: (position.left + position.width / 2 - ttWidth / 2) + 'px'
+        };
+    }
+  };
 }

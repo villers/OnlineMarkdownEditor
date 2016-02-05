@@ -1,25 +1,16 @@
-<!doctype html>
-<html ng-app="artifact">
+<!DOCTYPE html ng-strict-di>
+{% if (o.webpackConfig.metadata.ENV === 'development') { %}
+<html lang="">
+{% } else { %}
+<html lang="" manifest="manifest.appcache">
+{% } %}
   <head>
-    <meta charset="utf-8">
     <title>Online Markdown Editor</title>
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width">
+
+    <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
-
-    <!-- build:css({.tmp/serve,src}) styles/vendor.css -->
-    <link rel="stylesheet" href="app/vendor.css">
-    <!-- bower:css -->
-    <!-- run `gulp inject` to automatically populate bower styles dependencies -->
-    <!-- endbower -->
-    <!-- endbuild -->
-
-    <!-- build:css({.tmp/serve,src}) styles/app.css -->
-    <!-- inject:css -->
-    <!-- css files will be automatically insert here -->
-    <!-- endinject -->
-    <!-- endbuild -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Markdown Editor">
   </head>
   <body>
     <!--[if lt IE 9]>
@@ -29,21 +20,13 @@
     <navbar></navbar>
     <editor></editor>
 
-    <!-- build:js(src) scripts/vendor.js -->
-    <!-- bower:js -->
-    <!-- run `gulp inject` to automatically populate bower script dependencies -->
-    <!-- endbower -->
-    <!-- endbuild -->
+    {% if (o.webpackConfig.metadata.ENV === 'development') { %}
+    <script src="http://localhost:8080/webpack-dev-server.js"></script>
+    {% } %}
 
-    <!-- build:js({.tmp/serve,.tmp/partials,src}) scripts/app.js -->
-    <!-- inject:js -->
-    <!-- js files will be automatically insert here -->
-    <!-- endinject -->
-
-    <!-- inject:partials -->
-    <!-- angular templates will be automatically converted in js and inserted here -->
-    <!-- endinject -->
-    <!-- endbuild -->
+    {% for (var chunk in o.htmlWebpackPlugin.files.chunks) { %}
+    <script src="{%= o.htmlWebpackPlugin.files.chunks[chunk].entry %}"></script>
+    {% } %}
 
   </body>
 </html>
