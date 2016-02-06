@@ -1,4 +1,4 @@
-# Angular2Mdl
+# OnlineMarkdownEditor
 
 Start dev server
 ```sh
@@ -15,6 +15,7 @@ Build production
 $ npm run build
 ```
 
-#API
-http://backoffice/components/popular/10
-http://backoffice/components/recent/10
+Start server production
+```sh
+$ npm run build
+```
