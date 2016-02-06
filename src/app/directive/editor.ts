@@ -1,5 +1,4 @@
 'use strict';
-'ngInject';
 
 import IWindowService = angular.IWindowService;
 import IDirective = angular.IDirective;
@@ -34,6 +33,7 @@ class EditorCtrl {
   };
 
   constructor (private $localStorage: any, private $window: IWindowService) {
+    'ngInject';
     this.document = this.$localStorage.document;
     this.download();
   }

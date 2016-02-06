@@ -42,13 +42,9 @@ module.exports = {
 
   module: {
     loaders: [
-      { test: /\.ts$/,
-        loader: 'ts-loader',
-        query: {
-          'compilerOptions': {
-            'removeComments': true
-          }
-        },
+      {
+        test: /\.ts$/,
+        loader: 'ng-annotate!nginject?deprecate!ts-loader',
         exclude: [ /\.(spec|e2e)\.ts$/ ]
       },
       { test: /\.json$/,  loader: 'json-loader' },

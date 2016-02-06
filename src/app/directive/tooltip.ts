@@ -1,5 +1,4 @@
 'use strict';
-'ngInject';
 
 import IDocumentService = angular.IDocumentService;
 import IDirective = angular.IDirective;
@@ -16,6 +15,7 @@ import IAugmentedJQuery = angular.IAugmentedJQuery;
  */
 export class ToolTipDirective {
   static Factory($document: IDocumentService, $compile: ICompileService, $window: IWindowService): IDirective {
+    'ngInject';
     return {
       restrict: 'A',
       scope: true,

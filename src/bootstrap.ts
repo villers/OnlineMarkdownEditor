@@ -1,5 +1,4 @@
 'use strict';
-'ngInject';
 
 import './app/app';
 import './index.styl';

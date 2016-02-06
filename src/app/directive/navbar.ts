@@ -1,5 +1,4 @@
 'use strict';
-'ngInject';
 
 import IDirective = angular.IDirective;
 

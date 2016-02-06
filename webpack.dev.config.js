@@ -44,7 +44,7 @@ module.exports = {
       { test: /\.ts$/, loader: "tslint-loader", exclude: [/node_modules/] }
     ],
     loaders: [
-      { test: /\.ts$/, loader: 'ts-loader' },
+      { test: /\.ts$/, loader: 'ng-annotate!nginject?deprecate!ts-loader' },
       { test: /\.json$/,  loader: 'json-loader' },
       { test: /\.scss$/, loader: "style-loader!css-loader!sass-loader" },
       { test: /\.styl$/, loader: 'style-loader!css-loader!stylus-loader' },

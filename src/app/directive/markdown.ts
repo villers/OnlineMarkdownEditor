@@ -1,5 +1,4 @@
 'use strict';
-'ngInject';
 
 import ISanitizeService = angular.sanitize.ISanitizeService;
 import IScope = angular.IScope;
@@ -16,6 +15,7 @@ var showdown: any = require('showdown/dist/showdown.js');
  */
 export class MarkdownDirective {
   static Factory($sanitize: ISanitizeService): IDirective {
+    'ngInject';
     return {
       restrict: 'AE',
       scope: {
