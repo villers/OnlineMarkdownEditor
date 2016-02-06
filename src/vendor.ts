@@ -1,10 +1,8 @@
 'use strict';
-'ngInject';
 
 /**
  * imports libraries
  */
-
 import 'angular';
 import 'angular-sanitize';
 import 'ngstorage/ngStorage.js';
