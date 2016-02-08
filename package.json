@@ -5,7 +5,7 @@
   "scripts": {
     "postinstall": "npm run typings-install && npm run build",
     "start": "npm run server:dev",
-    "server:dev": "node ./node_modules/webpack-dev-server/bin/webpack-dev-server --inline --colors --progress --display-error-details --display-cached --port 8080 --config webpack.dev.config.js",
+    "server:dev": "node ./node_modules/webpack-dev-server/bin/webpack-dev-server --inline --colors --progress --display-error-details --display-cached --port 8080 --config webpack.dev.config.js --host 0.0.0.0",
     "server:prod": "node ./node_modules/http-server/bin/http-server build --cors",
     "build": "node ./node_modules/webpack/bin/webpack --colors --progress --display-error-details -p --config webpack.prod.config.js",
     "test": "node ./node_modules/karma/bin/karma start",
