@@ -10,8 +10,8 @@ import IAttributes = angular.IAttributes;
 import IAugmentedJQuery = angular.IAugmentedJQuery;
 
 /**
- * show navbar
- * <navbar></navbar>
+ * show tooltip
+ *  <a href="#" tooltip="{{vm.tooltiptext.Title}}" position="bottom">Title</a>
  */
 export class ToolTipDirective {
   static Factory($document: IDocumentService, $compile: ICompileService, $window: IWindowService): IDirective {
