@@ -30,7 +30,7 @@ export class MarkdownDirective {
 
   private static Markdown(text: string): string {
     var md: any = new MarkdownIt({
-      linkify: true,
+      linkify: false,
       typographer: true,
       highlight: function (str: string, lang: string) {
         if (lang && hljs.getLanguage(lang)) {
