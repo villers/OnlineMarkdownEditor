@@ -1,5 +1,4 @@
 'use strict';
-'ngInject';
 
 import {NavbarDirective} from './directive/navbar';
 import {MarkdownDirective} from './directive/markdown';
@@ -17,10 +16,12 @@ angular.module('artifact', ['ngStorage', 'ngSanitize', 'ngSanitize'])
    * whitelisting of safe urls during a[href] sanitization.
    */
   .config(($compileProvider: angular.ICompileProvider) => {
+    'ngInject';
     $compileProvider.aHrefSanitizationWhitelist(/^\s*(|blob|):/);
   })
 
   .run(($localStorage: any) => {
+    'ngInject';
     $localStorage.$default({
       document: {
         name: 'Untitled Document.md',

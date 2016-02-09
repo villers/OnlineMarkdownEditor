@@ -1,6 +1,6 @@
 {
   "name": "MarkdownApplication",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "license": "MIT",
   "scripts": {
     "postinstall": "npm run typings-install && npm run build",
@@ -73,3 +73,4 @@
     "webpack-dev-server": "^1.14.1"
   }
 }
+

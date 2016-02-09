@@ -49,6 +49,7 @@ module.exports = {
       { test: /\.scss$/, loader: "style-loader!css-loader!sass-loader" },
       { test: /\.styl$/, loader: 'style-loader!css-loader!stylus-loader' },
       { test: /\.css$/, loader: "style-loader!css-loader" },
+      { test: /\.html$/, loader: "raw-loader" },
       { test: /\.(ttf|eot|svg|woff(2)?).*$/, loader: "file-loader?name=fonts/[name].[ext]" }
     ]
   },
