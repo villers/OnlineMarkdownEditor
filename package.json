@@ -10,6 +10,7 @@
     "build": "node ./node_modules/webpack/bin/webpack --colors --progress --display-error-details -p --config webpack.prod.config.js",
     "test": "node ./node_modules/karma/bin/karma start",
     "clean": "node ./node_modules/rimraf/bin build target Logs",
+    "docs": "node ./node_modules/typedoc/bin/typedoc --options typedoc.json --includeDeclarations typings/browser.d.ts src",
     "typings-install": "typings install",
     "typings-install-e": "typings install --ambient --save"
   },
@@ -66,6 +67,7 @@
     "ts-loader": "^0.7.2",
     "tslint": "^3.2.1",
     "tslint-loader": "^2.1.0",
+    "typedoc": "^0.3.12",
     "typescript": "^1.7.5",
     "typings": "^0.6.3",
     "url-loader": "^0.5.7",
