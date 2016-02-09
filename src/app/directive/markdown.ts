@@ -1,6 +1,5 @@
 'use strict';
 
-import ISanitizeService = angular.sanitize.ISanitizeService;
 import IScope = angular.IScope;
 import IRootElementService = angular.IRootElementService;
 import IAttributes = angular.IAttributes;

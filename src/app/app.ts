@@ -5,7 +5,7 @@ import {MarkdownDirective} from './directive/markdown';
 import {EditorDirective} from './directive/editor';
 import {ToolTipDirective} from './directive/tooltip';
 
-angular.module('artifact', ['ngStorage', 'ngSanitize', 'ngSanitize'])
+angular.module('artifact', ['ngStorage'])
   .directive('navbar', NavbarDirective.Factory)
   .directive('markdown', MarkdownDirective.Factory)
   .directive('editor', EditorDirective.Factory)
