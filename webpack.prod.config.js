@@ -83,6 +83,7 @@ module.exports = {
     }),
     new CopyWebpackPlugin([
       { from: './src/app', to: 'app' },
+      { from: './src/favicon.ico' },
       { from: './src/Web.config' }
     ], { ignore: ['*.ts', '*.scss', '*.html', '*.styl'] })
   ],
