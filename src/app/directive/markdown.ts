@@ -39,7 +39,9 @@ export class MarkdownDirective {
           return hljs.highlightAuto(str).value;
         }
       }
-    }).use(require('markdown-it-toc'))
+    })
+      .use(require('markdown-it-headinganchor'))
+      .use(require('markdown-it-toc'))
       .use(require('markdown-it-footnote'))
       .use(require('markdown-it-sub'))
       .use(require('markdown-it-sup'))
