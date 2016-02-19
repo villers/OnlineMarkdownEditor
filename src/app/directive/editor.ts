@@ -1,7 +1,8 @@
 'use strict';
 
-import IWindowService = angular.IWindowService;
-import IDirective = angular.IDirective;
+import {IDirective, IWindowService} from 'angular';
+import {Api} from '../services/api';
+import {Config} from '../models/config';
 
 interface IDocument {
   name: string;
@@ -11,6 +12,8 @@ interface IDocument {
 
 class EditorCtrl {
   private document: IDocument;
+
+  private url: string;
 
   private tooltiptext: any = {
     Download: 'Download',
@@ -32,17 +35,21 @@ class EditorCtrl {
       [I'm a relative reference to a repository file](../blob/master/LICENSE)<br>`,
   };
 
-  constructor (private $localStorage: any, private $window: IWindowService) {
+  constructor (private $localStorage: any, private $window: IWindowService, private api: Api, private Config: Config) {
     'ngInject';
+
     this.document = this.$localStorage.document;
-    this.download();
   }
 
   download() {
-    var blob = new Blob([this.$localStorage.document.text], {
-      type: 'text/plain'
+    this.api.exportPdf(this.document.name, this.document.text).then((result: any) => {
+      this.url = `${this.Config.api}${result.data.type}/${result.data.name}`;
+      setTimeout(() => {
+        document.getElementById('downloader').click();
+      }, 100);
+    }, (error: any) => {
+      console.log(error);
     });
-    this.document.url = this.$window.URL.createObjectURL(blob);
   }
 }
 
@@ -64,9 +71,11 @@ export class EditorDirective {
 
             <div class="editor-header">
               <h3 class="title">Markdown</h3>
-              <a ng-href="{{vm.document.url}}" download="{{vm.document.name}}" tooltip="{{vm.tooltiptext.Download}}" position="bottom">
+              <a ng-click="vm.download()" download tooltip="{{vm.tooltiptext.Download}}" position="bottom">
                 <i class="glyphicon glyphicon-download-alt"></i>
               </a>
+              <a target="_self" id="downloader" ng-href="{{vm.url}}" download ng-hide="true"></a>
+
 
               <span class="text-right">
                 <a href="#" tooltip="{{vm.tooltiptext.Title}}" position="bottom">Title</a>
