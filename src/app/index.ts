@@ -3,7 +3,6 @@
 ///<reference path="directive/markdown.ts"/>
 ///<reference path="directive/navbar.ts"/>
 ///<reference path="directive/editor.ts"/>
-///<reference path="directive/tooltip.ts"/>
 
 module artifact {
   'use strict';
@@ -13,7 +12,6 @@ module artifact {
     .provider('markdownprovider', MarkdownProvider)
     .directive('markdown', MarkdownDirective.Factory)
     .directive('editor', EditorDirective.Factory)
-    .directive('tooltip', ToolTipDirective.Factory)
 
     // overrides the default regular expression that is used for whitelisting of safe urls during a[href] sanitization.
     .config(($compileProvider: angular.ICompileProvider) => {

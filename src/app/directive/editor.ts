@@ -71,15 +71,8 @@ module artifact {
                         <div class="col s6">
                           <div class="editor-header">
                             <div class="page-header">
-                                <h3 class="title"><i class="material-icons left">create</i>Markdown</h3>
+                                <h3 class="title"><i class="material-icons left">create</i>Markdown Editor</h3>
                             </div>
-                            <!--
-                            <span class="text-right">
-                              <a href="#" tooltip="{{vm.tooltiptext.Title}}">Title</a>
-                              <a href="#" tooltip="{{vm.tooltiptext.List}}">List</a>
-                              <a href="#" tooltip="{{vm.tooltiptext.Link}}">Link</a>
-                            </span>
-                            -->
 
                             <textarea class="split split-editor" wrap="off" autocapitalize="off" spellcheck="false" ng-model="vm.document.text" ng-change="vm.download()"></textarea>
 
@@ -100,16 +93,16 @@ module artifact {
                     </div>
                 </div>
             </div>
-            <div class="fixed-action-btn" style="bottom: 45px; right: 24px;">
-            <a class="btn-floating btn-large">
+            <div class="fixed-action-btn click-to-toggle" style="bottom: 45px; right: 24px;">
+            <a class="btn-floating btn-large red lighten-1">
               <i class="material-icons">add</i>
             </a>
             <ul>
               <li>
-                 <a class="btn-floating darken-1" style="transform: scaleY(0.4) scaleX(0.4) translateY(40px) translateX(0px); opacity: 0;"><i class="material-icons">help_outline</i></a>
+                 <a class="btn-floating red lighten-1 tooltipped" data-position="left" data-delay="20" data-tooltip="Help"><i class="material-icons">help_outline</i></a>
               </li>
               <li>
-                <a class="btn-floating tooltipped" data-position="left" data-delay="20" data-tooltip="{{vm.tooltiptext.Download}}" ng-href="{{vm.document.url}}" download="{{vm.document.name}}"><i class="material-icons">file_download</i></a>
+                <a class="btn-floating red lighten-1 tooltipped" data-position="left" data-delay="20" data-tooltip="{{vm.tooltiptext.Download}}" ng-href="{{vm.document.url}}" download="{{vm.document.name}}"><i class="material-icons">file_download</i></a>
               </li>
             </ul>
           </div>
