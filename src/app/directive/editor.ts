@@ -13,8 +13,6 @@ interface IDocument {
 class EditorCtrl {
   private document: IDocument;
 
-  private url: string;
-
   private tooltiptext: any = {
     Download: 'Download',
     Title: `
@@ -43,10 +41,8 @@ class EditorCtrl {
 
   download() {
     this.api.exportPdf(this.document.name, this.document.text).then((result: any) => {
-      this.url = `${this.Config.api}${result.data.type}/${result.data.name}`;
-      setTimeout(() => {
-        document.getElementById('downloader').click();
-      }, 100);
+      var url = `${this.Config.api}${result.data.type}/${result.data.name}`;
+      this.$window.open(url, '_self');
     }, (error: any) => {
       console.log(error);
     });
@@ -74,8 +70,6 @@ export class EditorDirective {
               <a ng-click="vm.download()" download tooltip="{{vm.tooltiptext.Download}}" position="bottom">
                 <i class="glyphicon glyphicon-download-alt"></i>
               </a>
-              <a target="_self" id="downloader" ng-href="{{vm.url}}" download ng-hide="true"></a>
-
 
               <span class="text-right">
                 <a href="#" tooltip="{{vm.tooltiptext.Title}}" position="bottom">Title</a>
