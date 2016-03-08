@@ -52,9 +52,8 @@ export class MarkdownDirective {
       .use(require('markdown-it-checkbox'))
       .use(require('markdown-it-emoji'));
 
-    md.renderer.rules.table_open = function () {
-      return '<table class="table table-striped">\n';
-    };
+      md.renderer.rules.table_open = () => '<table class="table table-striped">\n';
+
     return md.render(text);
   }
 }
