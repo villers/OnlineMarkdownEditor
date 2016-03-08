@@ -14,6 +14,7 @@ export class Api {
    * Dependency injection
    * @param $http         Service is a core Angular service that facilitates communication with the remote HTTP servers
    * via the browser's XMLHttpRequest object or via JSONP.
+   * @param Config        Configuration Constante
    */
   constructor(private $http: IHttpService, Config: Config) {
     'ngInject';
@@ -23,7 +24,8 @@ export class Api {
 
   /**
    * download currentMarkdown as pdf
-   * @param name   search key
+   * @param name     search key
+   * @param content  body
    * @returns          markdown string
    */
   exportPdf(name: string, content: string): angular.IPromise<string> {
