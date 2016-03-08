@@ -43,8 +43,8 @@ class EditorCtrl {
     this.api.exportPdf(this.document.name, this.document.text).then((result: any) => {
       var url = `${this.Config.api}${result.data.type}/${result.data.name}`;
       this.$window.open(url, '_self');
-    }, (error: any) => {
-      console.log(error);
+    }, (error: angular.IHttpPromiseCallbackArg<string>) => {
+      alert(error.data);
     });
   }
 }
