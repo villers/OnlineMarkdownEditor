@@ -44,7 +44,7 @@ class EditorCtrl {
       var url = `${this.Config.api}${result.data.type}/${result.data.name}`;
       this.$window.open(url, '_self');
     }, (error: angular.IHttpPromiseCallbackArg<string>) => {
-      alert(error.data);
+      alert(error.data || `Check if API url is correct: ${this.Config.api}`);
     });
   }
 }
